@@ -6,7 +6,9 @@ import (
 )
 
 type Config struct {
-	MsgChannelBufSize int `env:"MSG_CHANNEL_BUFFER_SIZE" envDefault:"100"`
+	MsgChannelBufSize int    `env:"MSG_CHANNEL_BUFFER_SIZE" envDefault:"100"`
+	GRPCPort          string `env:"GRPC_PORT" envDefault:":50051"`
+	LogLevel          string `env:"LOG_LEVEL" envDefault:"info"`
 }
 
 func InitServiceConfig() (*Config, error) {
