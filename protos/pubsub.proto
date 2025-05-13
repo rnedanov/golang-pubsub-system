@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "github.com/rnedanov/golang-pubsub-system/gen";
+
+import "google/protobuf/empty.proto";
+
+service PubSubService {
+  // Subscribe creates a subscription for events
+  rpc Subscribe(SubscribeRequest) returns (stream Event);
+
+  // Publish sends an event to all subscribers
+  rpc Publish(PublishRequest) returns (google.protobuf.Empty);
+}
+
+message SubscribeRequest {
+  string key = 1;
+}
+
+message PublishRequest {
+  string key = 1;
+  string data = 2;
+}
+
+message Event {
+  string data = 1;
+}
